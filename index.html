@@ -83,7 +83,12 @@
         }
 
         async fetchNotes() {
-          const { data } = await axios.get(`/api/users/notes`);
+          const token = window.localStorage.getItem("token");
+          const { data } = await axios.get(`/api/users/notes`, {
+            headers: {
+              authorization: token,
+            },
+          });
           return data;
         }
         async componentDidMount() {
